@@ -68,7 +68,19 @@ public class FitnessClass implements Comparable<FitnessClass> {
 	}
 	
     public int compareTo(FitnessClass other) {
-	  return 0; // replace with your code
+    	
+    	int startTime = this.getStartTime();
+    	int otherStartTime = other.getStartTime();
+    	if (startTime < otherStartTime) {
+    		return 0;		
+    	}
+    	else if (startTime > otherStartTime)
+    		return 1;
+    }
+    
+    	
+    	
+	   // replace with your code
     }
     
     	
