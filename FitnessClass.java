@@ -74,15 +74,15 @@ public class FitnessClass implements Comparable<FitnessClass> {
     	if (startTime < otherStartTime) {
     		return 0;		
     	}
-    	else if (startTime > otherStartTime)
+    	else 
     		return 1;
     }
     
-    	
+}  	
     	
 	   // replace with your code
-    }
     
+ 
     	
 
     
@@ -92,10 +92,6 @@ public class FitnessClass implements Comparable<FitnessClass> {
     
     
     
-}
-
-
-
 
 
 

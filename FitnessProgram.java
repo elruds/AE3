@@ -9,6 +9,7 @@ import java.util.*;
 public class FitnessProgram {
     // your code here
 	private final int MAX_CLASSES = 7;
+	private FitnessClass singleFClass;
 	private FitnessClass [] fClasses;
 	private int countClasses;
 	
@@ -21,8 +22,9 @@ public class FitnessProgram {
 		
 	}
 
-	public FitnessProgram(FitnessClass f) {
-
+	public FitnessProgram(FitnessClass fC) {
+		
+		this.singleFClass = fC;
 		fClasses = new FitnessClass[MAX_CLASSES];
 //		int timeStarts = f.getStartTime();
 //		switch(timeStarts) {
@@ -46,17 +48,19 @@ public class FitnessProgram {
 		
 		for (int i = 0; i < MAX_CLASSES; i++)	{
 			
-			fClasses[i] = f;
-		}
+			fClasses[i] = fC;
 			
+		}
+		System.out.print(fC.getStartTime());
+//			
 		}
 		
-		public FitnessClass [] sortFClasses(FitnessClass [] fC)	{
+	
 			
 			
-			fClasses = Arrays.sort();
 			
-		}
+			
+		
 		
 	
 	
