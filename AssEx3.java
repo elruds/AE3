@@ -24,12 +24,17 @@ public class AssEx3 {
 			try {
 			reader = new FileReader("/Users/Lauren/eclipse-workspace/AssEx3/ClassesIn.txt");
 			Scanner scan = new Scanner(reader);
-			while (scan.hasNextLine()) {
+			FitnessClass fc;
+			FitnessProgram fp = new FitnessProgram();
+			
+			while (scan.hasNextLine() ) {
 				String classLine = scan.nextLine();
-				FitnessClass fc = new FitnessClass(classLine);
-				FitnessProgram fp = new FitnessProgram(fc);
+				fc = new FitnessClass(classLine);
+				fp.addFitnessClass(fc);
+				
 			}
-		
+			
+			System.out.print(fp.getFirstAvailableClassTime());
 			}
 			finally {
 
@@ -56,10 +61,6 @@ public class AssEx3 {
 
 
 
-//		FitnessClass fc = new FitnessClass("mp2 pilates mandy 14");
-//		FitnessClass fc2 = new FitnessClass("ls1 step linda 15");
-//		FitnessProgram fp = new FitnessProgram(fc);
-//		FitnessProgram fp2 = new FitnessProgram(fc2);
 		
 		
 		

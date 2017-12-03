@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -9,72 +10,86 @@ import java.util.*;
 public class FitnessProgram {
     // your code here
 	private final int MAX_CLASSES = 7;
-	private FitnessClass singleFClass;
-	private FitnessClass [] fClasses;
+	private FitnessClass [] fClasses = new FitnessClass[MAX_CLASSES]; 
 	private int countClasses;
 	
 	
-	
-	
-	
 	public FitnessProgram()	{
-		
-		
 	}
 
-	public FitnessProgram(FitnessClass fC) {
-		
-		this.singleFClass = fC;
-		fClasses = new FitnessClass[MAX_CLASSES];
-//		int timeStarts = f.getStartTime();
-//		switch(timeStarts) {
-//		case 9: fClasses[0] = f;
-//		break;
-//		case 10: fClasses[1] = f;
-//		break;
-//		case 11: fClasses[2] = f;
-//		break;
-//		case 12: fClasses[3] = f;
-//		break;
-//		case 13: fClasses[4] = f;
-//		break;
-//		case 14: fClasses[5] = f;
-//		break;
-//		case 15: fClasses[6] = f;
-//		break;
-//		default: fClasses = null;
-//		break;
-//		}
-		
-		for (int i = 0; i < MAX_CLASSES; i++)	{
-			
-			fClasses[i] = fC;
-			
+	public void addFitnessClass(FitnessClass fC) {
+
+		int timeStarts = fC.getStartTime();
+		switch(timeStarts) {
+		case 9: fClasses[0] = fC;
+		break;
+		case 10: fClasses[1] = fC;
+		break;
+		case 11: fClasses[2] = fC;
+		break;
+		case 12: fClasses[3] = fC;
+		break;
+		case 13: fClasses[4] = fC;
+		break;
+		case 14: fClasses[5] = fC;
+		break;
+		case 15: fClasses[6] = fC;
+		break;
+		default: fClasses = null;
+		break;
 		}
-		System.out.print(fC.getStartTime());
-//			
-		}
-		
-	
-			
-			
-			
-			
-		
-		
-	
-	
-		public int numFClasses(FitnessClass [] fClasses)	{
-			
-			countClasses = 0;
-			for (int i = 0; i < MAX_CLASSES; i++)	{
-				
-				if (fClasses[i] == null){
-					i++;
-				}
-		
-				else countClasses++;
 	}
-			return countClasses;
+		
+		public int numFClasses()	{ //counts number of fitness classes
+			
+			return Array.getLength(fClasses);
+			
+		}
+				
+//			countClasses = 0;
+//			for (int i = 0; i < MAX_CLASSES; i++)	{
+//				
+//				if (fClasses[i] == null){
+//					i++;
+//				}
+//		
+//				else countClasses++;
+//	}
+//			return countClasses;
+			
+			
+
+		public FitnessClass getFitnessClassAtIndex(int i){ //returns FitnessClass at 
+															//specified index position
+			return fClasses[i];
+		}
+		
+		public FitnessClass getFitnessClassAtTime(int t) { //return FitnessClass at 
+																//specified time
+			return fClasses[t - 9];
+			
+		}
+
+
+		public int getFirstAvailableClassTime() { //first available start time for a class
+			int i;
+			for (i = 0; i < MAX_CLASSES; i++)	{
+
+				if (fClasses[i] != null){
+				}
+				else {
+					return i+9;
+					
+				}
+			}
+			System.err.print("No available class times");
+			return 0;
+		}
 }
-}
+			
+			//}	
+			//		public FitnessClass getFitnessClassWithID(String ID) {
+
+
+			
+	
