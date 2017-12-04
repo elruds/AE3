@@ -67,31 +67,30 @@ public class FitnessClass implements Comparable<FitnessClass> {
 		return attendanceRecords;
 	}
 	
-    public int compareTo(FitnessClass other) {
-    	
-    	int startTime = this.getStartTime();
-    	int otherStartTime = other.getStartTime();
-    	if (startTime < otherStartTime) {
-    		return 0;		
-    	}
-    	else 
-    		return 1;
-    }
-    
-}  	
-    	
-	   // replace with your code
-    
- 
-    	
+	public double getAverageAttendance() {
 
-    
-    
-    
-    
-    
-    
-    
+		int sum = 0;
+		double average = 0;
+		for (int a : attendanceRecords) {
+			sum += a;
+			average = (double) sum/attendanceRecords.length;
 
+		}
+		return average;
+	}
+	
+	public int compareTo(FitnessClass other) {
 
+		double averageAttendance = this.getAverageAttendance();
+		double otherAverageAttendance = other.getAverageAttendance();
+		if (averageAttendance < otherAverageAttendance) 
+			return -1;		
 
+		else if (averageAttendance == otherAverageAttendance)
+			return 0;
+
+		else 
+			return 1;
+
+	}  	
+}
