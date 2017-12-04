@@ -53,7 +53,7 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 		FileReader reader = null;
 		try	{
 			try {
-			reader = new FileReader("/Users/Lauren/eclipse-workspace/AssEx3/ClassesIn.txt");
+			reader = new FileReader(classesInFile);
 			Scanner scan = new Scanner(reader);
 			FitnessClass fc;
 			FitnessProgram fp = new FitnessProgram();
@@ -98,24 +98,96 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * Instantiates timetable display and adds it to GUI
 	 */
 	public void updateDisplay(FitnessProgram fP) {
-	    // your code here
+		// your code here
+
+		String sTime = "";
+		String cName = "";
+		StringBuilder startTimes = new StringBuilder(sTime);
+		StringBuilder classNames = new StringBuilder(cName);
 		
 		FitnessClass [] fitClass = fP.allFClasses();
 		int i;
 		for (i = 0; i < fitClass.length; i++)	{
-			
+
 			if (fitClass[i] == null) {
 				i++;
 			}
 
 			else {
 				int start = fitClass[i].getStartTime();
+				String className = fitClass[i].getClassName();
+				
 
-				String sTime = String.format("%10d - %d", start, start+1);
-				display.append(sTime);
+				sTime = String.format("%10d - %d", start, start+1);
+				cName = String.format("%15s", className);
+				startTimes.append(sTime);
+				classNames.append(cName);
 			}
 		}		
-	}
+		display.append(startTimes.toString() + "\n");
+		display.append(classNames.toString() + "\n");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
+//		FitnessClass [] fitClass = fP.allFClasses();
+//		int i;
+//		int start = 0;
+//		String className = "";
+//		boolean endOfLine = false;
+//		for (i = 0; i < fitClass.length; i++)	{
+//
+//				
+//			if (fitClass[i] == null) {
+//				i++;
+//			}
+//			
+//			else {
+//				start = fitClass[i].getStartTime();
+//				className = fitClass[i].getClassName();
+//			}
+//			
+//			
+//			if (i == fitClass.length-1) {
+//				endOfLine = true;
+//				String sTimeNL = String.format("%10d - %d\n", start, start+1);
+//				String cNameNL = String.format("%15s\n", className);
+//				display.append(sTimeNL);
+////				display.append(cNameNL);
+//			}
+//
+//			if (!endOfLine) {
+//
+//				String sTime = String.format("%10d - %d", start, start+1);
+//				String cName = String.format("%15s", className);
+//				display.append(sTime);
+////				display.append(cName);
+//				
+//			}
+
+		
+		
+
 
 	/**
 	 * adds buttons to top of GUI
