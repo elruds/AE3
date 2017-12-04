@@ -102,31 +102,41 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 
 		String sTime = "";
 		String cName = "";
+		String tName = "";
+		int start = 0;
 		StringBuilder startTimes = new StringBuilder(sTime);
 		StringBuilder classNames = new StringBuilder(cName);
+		StringBuilder tutorNames = new StringBuilder(tName);
 		
 		FitnessClass [] fitClass = fP.allFClasses();
 		int i;
 		for (i = 0; i < fitClass.length; i++)	{
-
+			
 			if (fitClass[i] == null) {
-				i++;
+				start = i+9;
+				cName = "Available";
+				tName = "";
 			}
 
 			else {
-				int start = fitClass[i].getStartTime();
-				String className = fitClass[i].getClassName();
-				
-
-				sTime = String.format("%10d - %d", start, start+1);
-				cName = String.format("%15s", className);
+				start = fitClass[i].getStartTime();
+				cName = fitClass[i].getClassName();
+				tName = fitClass[i].getTutorName();
+			
+			}
+				sTime = String.format("%7d - %d", start, start+1);
+				cName = String.format("%12s", cName);
+				tName = String.format("%12s", tName);
 				startTimes.append(sTime);
 				classNames.append(cName);
-			}
-		}		
+				tutorNames.append(tName);
+		}
+
 		display.append(startTimes.toString() + "\n");
 		display.append(classNames.toString() + "\n");
-		}
+		display.append(tutorNames.toString() + "\n");
+	}
+
 		
 		
 		
