@@ -93,8 +93,7 @@ public class FitnessProgram {
 		}
 }
 			
-			//}	
-			//		public FitnessClass getFitnessClassWithID(String ID) {
+	public void set 
 
 
 			
