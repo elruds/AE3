@@ -49,6 +49,41 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 */
 	public void initLadiesDay() {
 	    // your code here
+		
+		FileReader reader = null;
+		try	{
+			try {
+			reader = new FileReader("/Users/Lauren/eclipse-workspace/AssEx3/ClassesIn.txt");
+			Scanner scan = new Scanner(reader);
+			FitnessClass fc;
+			FitnessProgram fp = new FitnessProgram();
+			
+			while (scan.hasNextLine() ) {
+				String classLine = scan.nextLine();
+				fc = new FitnessClass(classLine);
+				fp.addFitnessClass(fc);
+			}
+			
+			updateDisplay(fp);
+			
+			}
+			finally {
+
+				if (reader != null) {
+					reader.close();
+					}
+				}
+			}
+		
+			catch (IOException ioe) {
+				JOptionPane.showMessageDialog(null, "File not found",
+						"Error", JOptionPane.ERROR_MESSAGE);
+
+			}
+			catch (InputMismatchException e) {
+				JOptionPane.showMessageDialog(null, "Invalid file content",
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}	
 	}
 
 	/**
@@ -62,17 +97,24 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	/**
 	 * Instantiates timetable display and adds it to GUI
 	 */
-	public void updateDisplay(int start) {
+	public void updateDisplay(FitnessProgram fP) {
 	    // your code here
 		
-		String sTime = String.format("%10d - %d", start, start+1);
-		display.append(sTime);
-		
-		
-		
-		
-		
-		
+		FitnessClass [] fitClass = fP.allFClasses();
+		int i;
+		for (i = 0; i < fitClass.length; i++)	{
+			
+			if (fitClass[i] == null) {
+				i++;
+			}
+
+			else {
+				int start = fitClass[i].getStartTime();
+
+				String sTime = String.format("%10d - %d", start, start+1);
+				display.append(sTime);
+			}
+		}		
 	}
 
 	/**
@@ -162,52 +204,10 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent ae) {
 	    // your code here
-		
-		
-		
-		
-		
-		FileReader reader = null;
-		try	{
-			try {
-			reader = new FileReader("/Users/Lauren/eclipse-workspace/AssEx3/ClassesIn.txt");
-			Scanner scan = new Scanner(reader);
-			FitnessClass fc;
-			FitnessProgram fp = new FitnessProgram();
-			
-			while (scan.hasNextLine() ) {
-				String classLine = scan.nextLine();
-				fc = new FitnessClass(classLine);
-				fp.addFitnessClass(fc);
-				updateDisplay(fc.getStartTime());
-			}
-			
-			}
-			finally {
-
-				if (reader != null) {
-					reader.close();
-					}
-				}
-			}
-		
-			catch (IOException ioe) {
-				JOptionPane.showMessageDialog(null, "File not found",
-						"Error", JOptionPane.ERROR_MESSAGE);
-
-			}
-			catch (InputMismatchException e) {
-				JOptionPane.showMessageDialog(null, "Invalid file content",
-						"Error", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-	
-		
-		
-		
-		
-		
-		
+		initLadiesDay();
 		
 	}
-
+}
+		
+		
+	

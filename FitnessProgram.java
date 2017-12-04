@@ -11,7 +11,7 @@ public class FitnessProgram {
     // your code here
 	private final int MAX_CLASSES = 7;
 	private FitnessClass [] fClasses = new FitnessClass[MAX_CLASSES]; 
-	private int countClasses;
+	
 	
 	
 	public FitnessProgram()	{
@@ -40,6 +40,12 @@ public class FitnessProgram {
 		}
 	}
 		
+	public FitnessClass [] allFClasses()	{
+		
+		return fClasses;
+	}
+	
+	
 		public int numFClasses()	{ //counts number of fitness classes
 			
 			return Array.getLength(fClasses);
