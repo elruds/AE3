@@ -96,7 +96,6 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * from the file AttendancesIn.txt
 	 */
 	public void initAttendances() {
-//		 your code here
 		
 		FileReader attendancesReader = null;
 		try	{

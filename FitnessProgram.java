@@ -81,20 +81,27 @@ public class FitnessProgram {
 		}
 
 
+
 		public FitnessClass getFitnessClassWithID(String iD) {
 
 			int i;
 			for (i = 0; i < MAX_CLASSES; i++)	{
 
-				String currentID = fClasses[i].getClassID();
-				if (currentID.equals(iD)) {	
-					break;
+				if ((fClasses[i] == null)) {
+					i++;
+				}
+
+				else {
+					String currentID = fClasses[i].getClassID();
+
+					if (currentID.equals(iD)) {
+						return fClasses[i];
+					}
 				}
 			}
-
-			return fClasses[i];
+			return null;
+		
 		}
-
 }
 
-	
+
