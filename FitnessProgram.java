@@ -51,18 +51,6 @@ public class FitnessProgram {
 			return Array.getLength(fClasses);
 			
 		}
-				
-//			countClasses = 0;
-//			for (int i = 0; i < MAX_CLASSES; i++)	{
-//				
-//				if (fClasses[i] == null){
-//					i++;
-//				}
-//		
-//				else countClasses++;
-//	}
-//			return countClasses;
-			
 			
 
 		public FitnessClass getFitnessClassAtIndex(int i){ //returns FitnessClass at 
@@ -91,10 +79,22 @@ public class FitnessProgram {
 			System.err.print("No available class times");
 			return 0;
 		}
+
+
+		public FitnessClass getFitnessClassWithID(String iD) {
+
+			int i;
+			for (i = 0; i < MAX_CLASSES; i++)	{
+
+				String currentID = fClasses[i].getClassID();
+				if (currentID.equals(iD)) {	
+					break;
+				}
+			}
+
+			return fClasses[i];
+		}
+
 }
-			
-	public void set 
 
-
-			
 	
