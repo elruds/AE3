@@ -8,7 +8,7 @@ import java.util.*;
  * In addition an array can be returned in order of average attendance
  */
 public class FitnessProgram {
-    // your code here
+    
 	private final int MAX_CLASSES = 7;
 	private FitnessClass [] fClasses = new FitnessClass[MAX_CLASSES]; 
 	
@@ -52,7 +52,6 @@ public class FitnessProgram {
 			
 		}
 			
-
 		public FitnessClass getFitnessClassAtIndex(int i){ //returns FitnessClass at 
 															//specified index position
 			return fClasses[i];
@@ -77,7 +76,7 @@ public class FitnessProgram {
 				}
 			}
 			System.err.print("No available class times");
-			return 0;
+			return 1;
 		}
 
 
@@ -102,6 +101,34 @@ public class FitnessProgram {
 			return null;
 		
 		}
-}
+
+	public String sortFitnessClassesDescAttendance() {
+		
+		int i;
+		for (i = 0; i < fClasses.length; i++)	{
+			int notNull = getFirstAvailableClassTime();
+			if (notNull == 1) {
+				Arrays.sort(fClasses);
+			}
+			else i++;
+		}
+		
+		String list = Arrays.toString(fClasses);
+		return list;
+		
+	}	
+	}
+			
+		
+//		
+//		public double overallAverageAttendance() {
+//			
+//			
+//		}
+//		
+
+
+
+
 
 

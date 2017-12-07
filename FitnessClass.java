@@ -7,22 +7,22 @@ public class FitnessClass implements Comparable<FitnessClass> {
 	private String className;
 	private String tutorName;
 	private int startTime;
-	private int [] attendanceRecords; //= new int [WEEKS_RECORDED_ATTENDANCE];
+	private int [] attendanceRecords; 
 
 	public FitnessClass()	{
 
 	}
 
 	public FitnessClass(String classDetails)	{		//sets values of instance variables
-		String [] tokens = classDetails.split(" ");
-		if (tokens.length < 4) {
+		String [] classTokens = classDetails.split(" ");
+		if (classTokens.length < 4) {
 			System.out.print("Missing data");
 		}
 		else {
-			classID = tokens[0];				
-			className = tokens[1];
-			tutorName = tokens[2];
-			startTime = Integer.parseInt(tokens[3]);
+			classID = classTokens[0];				
+			className = classTokens[1];
+			tutorName = classTokens[2];
+			startTime = Integer.parseInt(classTokens[3]);
 
 		}
 	}
@@ -63,12 +63,17 @@ public class FitnessClass implements Comparable<FitnessClass> {
 		return startTime;
 	}
 	
-	public int [] getAttendanceRecords() {
-		return attendanceRecords;
+	public String getAttendanceRecords() {
+		StringBuilder attendanceBuilder = new StringBuilder();
+		for (int i: attendanceRecords) {
+			attendanceBuilder.append(i);
+		}
+		String attendanceRecordsString = attendanceBuilder.toString();
+		return attendanceRecordsString;
 	}
 	
 	public double getAverageAttendance() {
-
+		
 		int sum = 0;
 		double average = 0;
 		for (int a : attendanceRecords) {
@@ -79,18 +84,23 @@ public class FitnessClass implements Comparable<FitnessClass> {
 		return average;
 	}
 	
-	public int compareTo(FitnessClass other) {
 
+		
+	public int compareTo(FitnessClass other) {
+		
 		double averageAttendance = this.getAverageAttendance();
 		double otherAverageAttendance = other.getAverageAttendance();
 		if (averageAttendance < otherAverageAttendance) 
 			return -1;		
 
-		else if (averageAttendance == otherAverageAttendance)
+		else if (averageAttendance == otherAverageAttendance)  
 			return 0;
 
 		else 
 			return 1;
 
 	}  	
+	public String toString() {
+		return classID + className + tutorName + getAttendanceRecords() + getAverageAttendance();
+	}
 }

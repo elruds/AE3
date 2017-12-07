@@ -47,6 +47,8 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 		
 		initLadiesDay(); //calls method which reads data from ClassesIn file
 		initAttendances(); //calls method which reads data from AttendancesIn file
+		
+
 	}
 
 	/**
@@ -116,9 +118,8 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 					int attendance5 = Integer.parseInt(attendanceTokens[5]);
 					int [] passAttendances = {attendance1, attendance2, attendance3, attendance4, attendance5};
 					fc.setAttendanceRecords(passAttendances);
-
 				}
-				
+				System.out.print(fitnessProg.sortFitnessClassesDescAttendance());
 			}
 			finally {
 
@@ -251,7 +252,9 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * Instantiates a new window and displays the attendance report
 	 */
 	public void displayReport() {
-	    // your code here
+		report = new ReportFrame(fitnessProg);
+		report.buildReport();
+		report.setVisible(true);
 	}
 
 	/**
@@ -267,8 +270,11 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * @param ae the ActionEvent
 	 */
 	public void actionPerformed(ActionEvent ae) {
-	    // your code here
-		
+	   
+		if (ae.getSource() == attendanceButton) {
+			displayReport();
+			
+		}
 		
 	}
 }
