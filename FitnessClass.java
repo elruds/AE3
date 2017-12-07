@@ -66,7 +66,7 @@ public class FitnessClass implements Comparable<FitnessClass> {
 	public String getAttendanceRecords() {
 		StringBuilder attendanceBuilder = new StringBuilder();
 		for (int i: attendanceRecords) {
-			attendanceBuilder.append(i);
+			attendanceBuilder.append(i + "   ");
 		}
 		String attendanceRecordsString = attendanceBuilder.toString();
 		return attendanceRecordsString;
@@ -91,16 +91,22 @@ public class FitnessClass implements Comparable<FitnessClass> {
 		double averageAttendance = this.getAverageAttendance();
 		double otherAverageAttendance = other.getAverageAttendance();
 		if (averageAttendance < otherAverageAttendance) 
-			return -1;		
+			return 1;		
 
 		else if (averageAttendance == otherAverageAttendance)  
 			return 0;
 
 		else 
-			return 1;
+			return -1;
 
 	}  	
 	public String toString() {
-		return classID + className + tutorName + getAttendanceRecords() + getAverageAttendance();
+
+		String details = String.format("%5s %15s %15s %25s %13s\n", classID, className, tutorName, getAttendanceRecords(), getAverageAttendance());
+		return details;
 	}
+
+
+
 }
+

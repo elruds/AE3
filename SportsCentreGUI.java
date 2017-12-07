@@ -119,7 +119,7 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 					int [] passAttendances = {attendance1, attendance2, attendance3, attendance4, attendance5};
 					fc.setAttendanceRecords(passAttendances);
 				}
-				System.out.print(fitnessProg.sortFitnessClassesDescAttendance());
+				
 			}
 			finally {
 
@@ -273,6 +273,7 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	   
 		if (ae.getSource() == attendanceButton) {
 			displayReport();
+			
 			
 		}
 		

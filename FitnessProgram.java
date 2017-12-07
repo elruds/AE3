@@ -11,6 +11,7 @@ public class FitnessProgram {
     
 	private final int MAX_CLASSES = 7;
 	private FitnessClass [] fClasses = new FitnessClass[MAX_CLASSES]; 
+	private FitnessClass [] sortedFClasses;
 	
 	
 	
@@ -65,6 +66,7 @@ public class FitnessProgram {
 
 
 		public int getFirstAvailableClassTime() { //first available start time for a class
+
 			int i;
 			for (i = 0; i < MAX_CLASSES; i++)	{
 
@@ -78,6 +80,9 @@ public class FitnessProgram {
 			System.err.print("No available class times");
 			return 1;
 		}
+			
+			
+		
 
 
 
@@ -102,33 +107,52 @@ public class FitnessProgram {
 		
 		}
 
-	public String sortFitnessClassesDescAttendance() {
-		
-		int i;
-		for (i = 0; i < fClasses.length; i++)	{
-			int notNull = getFirstAvailableClassTime();
-			if (notNull == 1) {
-				Arrays.sort(fClasses);
+		public String sortFitnessClassesDescAttendance() {
+	
+//				 1 : count
+
+			int newSize = 0;
+			for (int i = 0; i < fClasses.length; i++) {
+				if (fClasses[i] != null) {
+					newSize++;
+				}
 			}
-			else i++;
+
+			// 2 : allocate new array
+			sortedFClasses = new FitnessClass [newSize];
+
+			// 3 : copy not null elements
+			int j = 0;
+			for (int i = 0; i < fClasses.length; i++) {
+				if (fClasses[i] != null) {
+					sortedFClasses[j++] = fClasses[i];
+
+				}
+			}
+
+			Arrays.sort(sortedFClasses);
+			String list = Arrays.toString(sortedFClasses);
+			String newList = list.replace(",","");
+			String newNewList = newList.replace("[","");
+			String finalList = newNewList.replaceAll("]", "");
+			return finalList;
 		}
+
+
 		
-		String list = Arrays.toString(fClasses);
-		return list;
 		
-	}	
-	}
+		public String overallAverageAttendance() {
 			
-		
-//		
-//		public double overallAverageAttendance() {
-//			
-//			
-//		}
-//		
-
-
-
-
-
+			double sum = 0;
+			double av = 0;
+			double overallAv = 0;
+			for (FitnessClass f: sortedFClasses) {
+				 av = f.getAverageAttendance();
+				 sum += av;
+				 overallAv = sum / sortedFClasses.length;
+			}
+			return String.valueOf(overallAv);
+		}	
+}
+	
 
