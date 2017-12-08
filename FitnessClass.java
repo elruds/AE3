@@ -106,7 +106,10 @@ public class FitnessClass implements Comparable<FitnessClass> {
 		return details;
 	}
 
+	public String toStringClassesOut() {
 
-
+		String classOutDetails = String.format("%5s %10s %10s %10d\n", classID, className, tutorName, startTime);
+		return classOutDetails;
+		
 }
-
+}

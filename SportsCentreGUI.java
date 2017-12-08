@@ -325,7 +325,40 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * tutor and start time and then exits from the program
 	 */
 	public void processSaveAndClose() {
-	    // your code here
+
+		PrintWriter writer = null;
+		try {
+			try {
+				writer = new PrintWriter(classesOutFile);
+
+				int i = 0;
+				for (FitnessClass fc: fitnessClass) {
+
+					if (fc == null) {
+						i++;
+					}
+
+					else {
+						String fileOutput = fc.toStringClassesOut();
+						writer.print(fileOutput);
+					}
+					
+				}
+			}
+			finally {
+
+				if (writer != null) {
+					writer.close();
+					System.exit(0);
+				}
+			} 	
+		}
+		catch (IOException ioe) {
+			JOptionPane.showMessageDialog(null, "File not found",
+					"Error", JOptionPane.ERROR_MESSAGE);
+
+		}				
+
 	}
 
 	/**
@@ -343,11 +376,14 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 		}
 		else if (ae.getSource() == deleteButton) {
 			processDeletion();
-			
 			updateDisplay(fitnessProg);
 		}
+		else if (ae.getSource() == closeButton) {
+			processSaveAndClose();
+		}
 	}
+	
 }
-		
+
 		
 	

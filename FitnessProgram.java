@@ -140,22 +140,22 @@ public class FitnessProgram {
 		}
 
 
-		
-		
+
+
 		public String overallAverageAttendance() {
-			
+
 			double sum = 0;
 			double av = 0;
 			double overallAv = 0;
 			String OA = "";
 			for (FitnessClass f: sortedFClasses) {
-				 av = f.getAverageAttendance();
-				 sum += av;
-				 overallAv = sum / sortedFClasses.length;
-				 OA = String.format("%6.2f", overallAv);
+				av = f.getAverageAttendance();
+				sum += av;
+				overallAv = sum / sortedFClasses.length;
+				OA = String.format("%6.2f", overallAv);
 			}
 			return OA;
 		}	
 }
-	
+
 
