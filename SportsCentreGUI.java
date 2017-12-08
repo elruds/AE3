@@ -145,6 +145,7 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 */
 	public void updateDisplay(FitnessProgram fitnessProg) {
 
+		display.setText("");
 		String sTime = "";
 		String cName = "";
 		String tName = "";
@@ -238,14 +239,76 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * Processes adding a class
 	 */
 	public void processAdding() {
-	    // your code here
+		
+		String iD = idIn.getText();
+		String clName = classIn.getText();
+		String tutName = tutorIn.getText();
+
+		if (tutName.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please enter a tutor name",
+					"Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else if (clName.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please enter a class name",
+					"Error", JOptionPane.ERROR_MESSAGE);
+		}
+
+		else {
+
+			int full = fitnessProg.getFirstAvailableClassTime();
+
+			if (full == 1) {
+				JOptionPane.showMessageDialog(null, "There are no available class times",
+						"Error", JOptionPane.ERROR_MESSAGE);
+			}
+
+			else {
+
+				fc = fitnessProg.getFitnessClassWithID(iD);
+
+
+				if (fc == null){
+
+					int availableTime = fitnessProg.getFirstAvailableClassTime();
+					FitnessClass newFC = new FitnessClass();
+					newFC.setClassID(iD);
+					newFC.setClassName(clName);
+					newFC.setStartTime(availableTime);
+					newFC.setTutorName(tutName);
+					int [] newAttRecords = {0,0,0,0,0};
+					newFC.setAttendanceRecords(newAttRecords);
+					fitnessProg.addFitnessClass(newFC);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "There is already a class scheduled with this ID",
+							"Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
 	}
 
 	/**
 	 * Processes deleting a class
 	 */
 	public void processDeletion() {
-	    // your code here
+
+		String iD = idIn.getText();
+
+		fc = fitnessProg.getFitnessClassWithID(iD);
+
+		if (fc != null) {
+			
+			int startTime = fc.getStartTime();
+			FitnessClass newFC = new FitnessClass();
+			newFC.setStartTime(startTime);
+			newFC.setClassName("Available");
+			newFC.setTutorName("");
+			fitnessProg.addFitnessClass(newFC);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "There is no scheduled class with this ID",
+					"Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
@@ -270,13 +333,19 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	 * @param ae the ActionEvent
 	 */
 	public void actionPerformed(ActionEvent ae) {
-	   
+
 		if (ae.getSource() == attendanceButton) {
 			displayReport();
-			
-			
 		}
-		
+		else if (ae.getSource() == addButton) {
+			processAdding();
+			updateDisplay(fitnessProg);
+		}
+		else if (ae.getSource() == deleteButton) {
+			processDeletion();
+			
+			updateDisplay(fitnessProg);
+		}
 	}
 }
 		

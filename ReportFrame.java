@@ -13,7 +13,6 @@ public class ReportFrame extends JFrame {
 	public ReportFrame(FitnessProgram fitP) {
 
 		this.fitnessP = fitP;
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Attendance Report");
 		setSize(700, 300);
 		displayReport = new JTextArea();

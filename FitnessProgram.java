@@ -63,6 +63,7 @@ public class FitnessProgram {
 			return fClasses[t - 9];
 			
 		}
+		
 
 
 		public int getFirstAvailableClassTime() { //first available start time for a class
@@ -146,12 +147,14 @@ public class FitnessProgram {
 			double sum = 0;
 			double av = 0;
 			double overallAv = 0;
+			String OA = "";
 			for (FitnessClass f: sortedFClasses) {
 				 av = f.getAverageAttendance();
 				 sum += av;
 				 overallAv = sum / sortedFClasses.length;
+				 OA = String.format("%6.2f", overallAv);
 			}
-			return String.valueOf(overallAv);
+			return OA;
 		}	
 }
 	
