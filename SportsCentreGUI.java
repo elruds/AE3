@@ -295,15 +295,14 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 		String iD = idIn.getText();
 
 		fc = fitnessProg.getFitnessClassWithID(iD);
-
+		int indexPos = 0;
+		
 		if (fc != null) {
 			
 			int startTime = fc.getStartTime();
-			FitnessClass newFC = new FitnessClass();
-			newFC.setStartTime(startTime);
-			newFC.setClassName("Available");
-			newFC.setTutorName("");
-			fitnessProg.addFitnessClass(newFC);
+			indexPos = startTime - 9;
+			fitnessClass [indexPos] = null;
+			
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "There is no scheduled class with this ID",
@@ -385,5 +384,3 @@ public class SportsCentreGUI extends JFrame implements ActionListener {
 	
 }
 
-		
-	
